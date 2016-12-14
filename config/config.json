@@ -1,0 +1,27 @@
+{
+  "DEVELOPMENT" : {
+    "cdnHost"     : "http://localhost",
+    "apiHost"     : "http://192.168.0.8:8081",
+    "port"        : 8080
+  },
+
+  "QA" : {
+    "cdnHost"     : "http://xxx.com",
+    "apiHost"     : "http://api.xxx.com",
+    "port"        : 8080
+  },
+
+  "PRODUCTION" : {
+    "cdnHost"     : "http://xxx.com",
+    "apiHost"     : "http://api.xxx.com",
+    "port"        : 80
+  },
+
+  "APP_TITLE"     : "react-ant-sample",
+  "ENTRY"         : "index.js",
+  "SRC_DIR"       : "src",
+  "TEMPLATES_DIR" : "templates",
+  "ASSETS_DIR"    : "assets",
+  "BUILD_DIR"     : "dist",
+  "BANNER"        : "OBORService inc."
+}
