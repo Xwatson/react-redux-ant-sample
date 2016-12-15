@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "lint": "eslint bin build config src test",
-    "compile":"better-npm-run compile",
+    "compile": "better-npm-run compile",
     "build": "better-npm-run build",
     "dev": "better-npm-run dev",
     "qa": "better-npm-run compile",
@@ -15,7 +15,7 @@
   },
   "betterScripts": {
     "compile": {
-      "command": "node bin/compile",
+      "command": "npm run lint && node bin/compile",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
@@ -29,7 +29,7 @@
       }
     },
     "build": {
-      "command": "npm run clean && npm run compile",
+      "command": "npm run clean  &&  npm run compile",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
