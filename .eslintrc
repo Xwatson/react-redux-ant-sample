@@ -26,6 +26,8 @@
     "indent"               : ["error", 4],
     "object-curly-spacing" : [2, "always"],
     "space-before-function-paren" : ["error", "never"],
-    "operator-linebreak": ["error", "after"]
+    "operator-linebreak": ["error", "after"],
+    "no-new-wrappers": 1,
+    "no-eval": 0
   }
 }
