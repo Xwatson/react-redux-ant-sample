@@ -16,11 +16,11 @@ class AppContainer extends Component {
         BASE_API_URL:config[process.env.NODE_ENV.toUpperCase()].apiHost
     }
 
-    shouldComponentUpdate () {
+    shouldComponentUpdate() {
         return false
     }
 
-    render () {
+    render() {
         const { routes, store } = this.props
 
         return (

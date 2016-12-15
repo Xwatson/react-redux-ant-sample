@@ -3,12 +3,10 @@
  */
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import DevTools from '../containers/DevTools'
 
 export default (initialState = {}) => {
-
     const middleware = [thunk]
 
     const enhancers = []
@@ -16,7 +14,7 @@ export default (initialState = {}) => {
         const devToolsExtension = window.devToolsExtension
         if (typeof devToolsExtension === 'function') {
             enhancers.push(devToolsExtension())
-        }else {
+        } else {
             enhancers.push(DevTools.instrument())
         }
     }
@@ -30,7 +28,6 @@ export default (initialState = {}) => {
         )
     )
     store.asyncReducers = {}
-
 
     if (module.hot) {
         module.hot.accept('./reducers', () => {

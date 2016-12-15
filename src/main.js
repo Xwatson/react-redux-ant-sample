@@ -9,7 +9,6 @@ import AppContainer from './containers/AppContainer'
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
 
-
 const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
@@ -38,7 +37,6 @@ if (__DEV__) {
 
             ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
         }
-
 
         render = () => {
             try {

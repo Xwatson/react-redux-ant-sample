@@ -5,7 +5,6 @@
 const ITEM_REQUIRE = 'ITEM_GETALL'
 const ITEM_RECEIVE = 'ITEM_RECEIVE'
 
-
 export function initItems() {
     return {
         type: ITEM_REQUIRE
@@ -20,12 +19,12 @@ export function receiveItems(date = []) {
     }
 }
 export function fetchItems() {
-    return (dispatch,getState) => {
-        if(getState().items.fetching) return
-        //发起请求
+    return (dispatch, getState) => {
+        if (getState().items.fetching) return
+        // 发起请求
         dispatch(initItems())
-        //模拟请求
-        setTimeout(function () {
+        // 模拟请求
+        setTimeout(function() {
             let data = [{
                 key: '1',
                 name: '胡彦斌',
@@ -38,7 +37,7 @@ export function fetchItems() {
                 address: '西湖区湖底公园1号'
             }]
             dispatch(receiveItems(data))
-        },2000)
+        }, 2000)
     }
 }
 
@@ -50,10 +49,10 @@ export const actions = {
 
 const ACTION_HANDLERS = {
     [ITEM_REQUIRE]: (state, action) => {
-        return ({...state, fetching: true})
+        return ({ ...state, fetching: true })
     },
     [ITEM_RECEIVE] : (state, action) => {
-        return ({...state, fetching: false, tableDate: action.payload.tableDate})
+        return ({ ...state, fetching: false, tableDate: action.payload.tableDate })
     }
 }
 
@@ -61,7 +60,7 @@ const initialState = {
     fetching:false,
     tableDate:[]
 }
-export default function itemsReducer (state = initialState, action) {
+export default function itemsReducer(state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type]
 
     return handler ? handler(state, action) : state

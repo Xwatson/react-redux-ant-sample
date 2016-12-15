@@ -7,7 +7,7 @@ import { Menu, Icon } from 'antd'
 const SubMenu = Menu.SubMenu
 
 export default class LeftMenu extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
@@ -16,13 +16,13 @@ export default class LeftMenu extends React.Component {
         current:browserHistory.getCurrentLocation().pathname
     }
 
-    handleClick (e) {
+    handleClick(e) {
         this.setState({
             current: e.key
         })
     }
 
-    render () {
+    render() {
         return (
             <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} theme="dark"
               defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="inline" >

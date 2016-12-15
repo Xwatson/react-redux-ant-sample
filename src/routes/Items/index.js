@@ -5,7 +5,7 @@ import { injectReducer } from '../../store/reducers'
 
 export default (store) => ({
     path: 'items',
-    getComponent (nextState, cb) {
+    getComponent(nextState, cb) {
         require.ensure([], (require) => {
             const Zen = require('./containers/ItemsContainer').default
             const reducer = require('./modules/items').default
