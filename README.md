@@ -20,6 +20,7 @@
 　　　　　　　　　　　　　　　　　　　　　　　　　　111 : <br />
 　　　　　　　　　　　　　　　　　　　　　　　　　　222
 * react中使用```props```必须声明其propTypes
+* string必须用单引号
 * 其他默认
 
 ### 运行
