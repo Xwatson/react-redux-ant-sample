@@ -11,19 +11,6 @@
 * 国际化
 * ...
 
-### eslint规则
-* 代码缩进为4格
-* jsx缩进为4格
-* jsx中属性使用双引号
-* 函数声明请在‘()’后空格，如：function() {}
-* 花括号'{}'内前后需要空格，如：{ test1, test2 }
-* 三元表达式可换行但 ’ ? ‘和‘ : ’ 不可独自占行，正确格式如：true ? <br />
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　111 : <br />
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　222
-* react中使用```props```必须声明其propTypes
-* string必须用单引号
-* 其他默认
-
 ### 运行
 *install 安装依赖*
 ```bash
@@ -38,10 +25,23 @@ npm run dev
 ```bash
 npm run compile
 ```
-*运行build(暂未加入行代码检测)*
+*运行build*
 ```bash
 npm run build
 ```
+
+### eslint规则
+* 代码缩进为4格
+* jsx缩进为4格
+* jsx中属性使用双引号
+* 函数声明请在‘()’后空格，如：function() {}
+* 花括号'{}'内前后需要空格，如：{ test1, test2 }
+* 三元表达式可换行但 ’ ? ‘和‘ : ’ 不可独自占行，正确格式如：true ? <br />
+　　　　　　　　　　　　　　　　　　　　　　　　　　　  111 : <br />
+　　　　　　　　　　　　　　　　　　　　　　　　　　　  222
+* react中使用```props```必须声明其propTypes
+* string必须用单引号
+* 其他默认
 
 ### 结构
 
