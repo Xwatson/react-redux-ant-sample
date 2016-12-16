@@ -2,7 +2,7 @@
  * Created by xwatson on 2016/12/9.
  */
 import React, { PropTypes } from 'react'
-import { Table, Input, Popconfirm, Select } from 'antd'
+import { Table, Input, Popconfirm, Select, DatePicker, TimePicker } from 'antd'
 
 class EditableCell extends React.Component {
     state = {
@@ -237,7 +237,13 @@ export default class Items extends React.Component {
             return obj
         })
         const columns = this.columns
-        return <Table bordered dataSource={dataSource} columns={columns} />
+        return (
+            <div>
+                <Table bordered dataSource={dataSource} columns={columns} />
+                <DatePicker />
+                <TimePicker />
+            </div>
+        )
     }
 }
 /* export default class Items extends Component{
