@@ -8,6 +8,7 @@
 * 动态注册Reducer
 * react热更新
 * eslint代码检测
+* 国际化
 * ...
 
 ### eslint规则
