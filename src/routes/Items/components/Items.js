@@ -2,7 +2,8 @@
  * Created by xwatson on 2016/12/9.
  */
 import React, { PropTypes } from 'react'
-import { Table, Input, Popconfirm, Select, DatePicker, TimePicker } from 'antd'
+import { Table, Input, Popconfirm, Select, DatePicker, Calendar } from 'antd'
+import moment from 'moment'
 
 class EditableCell extends React.Component {
     state = {
@@ -241,7 +242,9 @@ export default class Items extends React.Component {
             <div>
                 <Table bordered dataSource={dataSource} columns={columns} />
                 <DatePicker />
-                <TimePicker />
+                <div style={{ width: 319, border: '1px solid #d9d9d9', borderRadius: 4 }}>
+                    <Calendar fullscreen={false} value={moment()} />
+                </div>
             </div>
         )
     }
