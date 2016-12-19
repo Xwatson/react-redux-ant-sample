@@ -10,7 +10,6 @@ import './CoreLayout.scss'
 import '../../styles/main.scss'
 import enUS from 'antd/lib/locale-provider/en_US'
 import moment from 'moment'
-import 'moment/locale/zh-cn'
 moment.locale('en')
 
 export class CoreLayout extends React.Component {
@@ -29,6 +28,7 @@ export class CoreLayout extends React.Component {
         } else {
             moment.locale('en')
         }
+        console.log(moment(1316116057189).fromNow())
         browserHistory.replace(browserHistory.getCurrentLocation())
     }
     render() {
