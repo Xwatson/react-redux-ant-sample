@@ -4,6 +4,7 @@
 import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import { Breadcrumb } from 'antd'
+const reg = /^(\/)(items)(\/)?/
 
 export default class Breadcrumbs extends React.Component {
     static propTypes = {
@@ -11,7 +12,6 @@ export default class Breadcrumbs extends React.Component {
     }
     _setBreadcrumb() {
         let location = browserHistory.getCurrentLocation()
-        let reg = /^(\/)(items)(\/)?/
         let match = location.pathname.match(reg)
         let path = match ? '/' + match[2] : ''
         let isDetail = match && match[3]

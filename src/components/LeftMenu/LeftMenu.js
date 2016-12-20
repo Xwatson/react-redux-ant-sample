@@ -5,6 +5,7 @@ import React from 'react'
 import { Link, browserHistory } from 'react-router'
 import { Menu } from 'antd'
 const SubMenu = Menu.SubMenu
+const reg = /^(\/)(items)(\/)?/
 
 export default class LeftMenu extends React.Component {
     static propTypes = {
@@ -29,7 +30,6 @@ export default class LeftMenu extends React.Component {
     }
     hasDetailPage() {
         let location = browserHistory.getCurrentLocation()
-        let reg = /^(\/)(items)(\/)?/
         let match = location.pathname.match(reg)
         if (match && match[3]) {
             return '/' + match[2]
