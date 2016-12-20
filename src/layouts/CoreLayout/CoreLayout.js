@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import { browserHistory } from 'react-router'
-import { LocaleProvider, Radio } from 'antd'
+import { LocaleProvider, Radio, Icon } from 'antd'
 import LeftMenu from '../../components/LeftMenu'
 import Breadcrumb from '../../components/Breadcrumb'
 import './CoreLayout.scss'
@@ -11,6 +11,28 @@ import '../../styles/main.scss'
 import enUS from 'antd/lib/locale-provider/en_US'
 import moment from 'moment'
 moment.locale('en')
+
+const lMeuns = {
+    theme: 'dark', // 主题
+    defaultOpenKeys: ['sub1'], // 默认打开的subs
+    subs:[
+        {
+            key: 'sub1',
+            name: '商品',
+            title: <span><Icon type="mail" /><span>商品</span></span>,
+            items:[
+                {
+                    router: '/',
+                    name: '首页'
+                },
+                {
+                    router: '/items',
+                    name: '列表'
+                }
+            ]
+        }
+    ]
+}
 
 export class CoreLayout extends React.Component {
     constructor(props) {
@@ -28,7 +50,6 @@ export class CoreLayout extends React.Component {
         } else {
             moment.locale('en')
         }
-        console.log(moment(1316116057189).fromNow())
         browserHistory.replace(browserHistory.getCurrentLocation())
     }
     render() {
@@ -36,7 +57,7 @@ export class CoreLayout extends React.Component {
             <div className="ant-layout-aside">
                 <aside className="ant-layout-sider">
                     <div className="ant-layout-logo">&nbsp;</div>
-                    <LeftMenu />
+                    <LeftMenu menus={lMeuns} />
                 </aside>
                 <div className="ant-layout-main">
                     <div className="ant-layout-header">
@@ -46,7 +67,7 @@ export class CoreLayout extends React.Component {
                         </Radio.Group>
                     </div>
                     <div className="ant-layout-breadcrumb">
-                        <Breadcrumb />
+                        <Breadcrumb menus={lMeuns} />
                     </div>
                     <div className="ant-layout-container">
                         <div className="ant-layout-content">
