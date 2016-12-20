@@ -13,13 +13,15 @@ export default class LeftMenu extends React.Component {
     constructor(props) {
         super(props)
         this.handleClick = this.handleClick.bind(this)
+        this.hasClick = false
     }
 
     state={
-        current:this.hasDetailPage()
+        current:browserHistory.getCurrentLocation().pathname
     }
 
     handleClick(e) {
+        this.hasClick = true
         this.setState({
             ...this.state,
             current: e.key
@@ -49,9 +51,17 @@ export default class LeftMenu extends React.Component {
         })
     }
     render() {
+        this.hasClick = false
         let { menus } = this.props
+        let current = this.state.current
+        if (this.hasClick) {
+            current = this.state.current
+        } else {
+            current = this.hasDetailPage()
+        }
+        console.log(current)
         return (
-            <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} theme={menus.theme}
+            <Menu onClick={this.handleClick} selectedKeys={[current]} theme={menus.theme}
               defaultOpenKeys={menus.defaultOpenKeys} mode="inline" >
                 {this._renderSubs(menus.subs)}
             </Menu>
