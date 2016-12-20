@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react'
 import { Table, Input, Popconfirm, Select, DatePicker, Calendar } from 'antd'
+import { browserHistory } from 'react-router'
 import moment from 'moment'
 
 class EditableCell extends React.Component {
@@ -121,8 +122,12 @@ class EditSelect extends React.Component {
     }
 }
 export default class Items extends React.Component {
+    static propTypes = {
+        params: PropTypes.object
+    }
     constructor(props) {
         super(props)
+        const { params: { id } } = props
         this.columns = [{
             title: 'name',
             dataIndex: 'name',
@@ -156,7 +161,7 @@ export default class Items extends React.Component {
                                 <a onClick={() => this.edit(index)}>Edit</a>
                             </span>
                     }
-                </div>)
+                    &nbsp;&nbsp;<span><a onClick={() => this.detail(index)}>detail</a></span></div>)
             }
         }]
         this.state = {
@@ -178,7 +183,6 @@ export default class Items extends React.Component {
     }
 
     renderColumns(data, index, key, text) {
-        console.log(data, index, key, text)
         const { editable, status } = data[index][key]
         if (typeof editable === 'undefined') {
             return text
@@ -187,7 +191,6 @@ export default class Items extends React.Component {
     }
 
     renderColumnsSelect(data, index, key, text) {
-        console.log(data, index, key, text)
         const { editable, status } = data[index][key]
         if (typeof editable === 'undefined') {
             return text
@@ -210,7 +213,9 @@ export default class Items extends React.Component {
         })
         this.setState({ data })
     }
-
+    detail(index) {
+        browserHistory.push('/items/123')
+    }
     editDone(index, type) {
         const { data } = this.state
         Object.keys(data[index]).forEach((item) => {
