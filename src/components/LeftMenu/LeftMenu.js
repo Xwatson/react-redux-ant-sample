@@ -28,14 +28,10 @@ export default class LeftMenu extends React.Component {
             current: e.key
         })
     }
-    hasDetailPage() {
+    convertDetailPage() {
         let location = browserHistory.getCurrentLocation()
         let match = location.pathname.match(reg)
-        if (match && match[3]) {
-            return '/' + match[2]
-        } else {
-            return location.pathname
-        }
+        return match && match[3] ? '/' + match[2] : location.pathname
     }
     _renderSubs(menus) {
         return menus.map(function(item) {
@@ -53,12 +49,7 @@ export default class LeftMenu extends React.Component {
     render() {
         this.hasClick = false
         let { menus } = this.props
-        let current = this.state.current
-        if (this.hasClick) {
-            current = this.state.current
-        } else {
-            current = this.hasDetailPage()
-        }
+        let current = this.hasClick ? this.state.current : this.convertDetailPage()
         console.log(current)
         return (
             <Menu onClick={this.handleClick} selectedKeys={[current]} theme={menus.theme}
