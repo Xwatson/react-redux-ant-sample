@@ -50,7 +50,6 @@ export default class LeftMenu extends React.Component {
         this.hasClick = false
         let { menus } = this.props
         let current = this.hasClick ? this.state.current : this.convertDetailPage()
-        console.log(current)
         return (
             <Menu onClick={this.handleClick} selectedKeys={[current]} theme={menus.theme}
               defaultOpenKeys={menus.defaultOpenKeys} mode="inline" >
