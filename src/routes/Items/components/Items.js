@@ -2,125 +2,12 @@
  * Created by xwatson on 2016/12/9.
  */
 import React, { PropTypes } from 'react'
-import { Table, Input, Popconfirm, Select, DatePicker, Calendar } from 'antd'
+import { Table, Popconfirm, DatePicker, Calendar } from 'antd'
+import TableEditInput from '../../../containers/TableEditInput'
+import TableEditSelectSearch from '../../../containers/TableEditSelectSearch'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
 
-class EditableCell extends React.Component {
-    state = {
-        value: this.props.value,
-        editable: this.props.editable || false
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.editable !== this.state.editable) {
-            this.setState({ editable: nextProps.editable })
-            if (nextProps.editable) {
-                this.cacheValue = this.state.value
-            }
-        }
-        if (nextProps.status && nextProps.status !== this.props.status) {
-            if (nextProps.status === 'save') {
-                this.props.onChange(this.state.value)
-            } else if (nextProps.status === 'cancel') {
-                this.setState({ value: this.cacheValue })
-                this.props.onChange(this.cacheValue)
-            }
-        }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.editable !== this.state.editable ||
-            nextState.value !== this.state.value
-    }
-
-    handleChange(e) {
-        const value = e.target.value
-        this.setState({ value })
-    }
-
-    render() {
-        const { value, editable } = this.state
-        return (<div>
-            {
-                editable ?
-                    <div>
-                        <Input value={value} onChange={e => this.handleChange(e)} />
-                    </div> :
-                    <div className="editable-row-text">
-                        {value || ' '}
-                    </div>
-            }
-        </div>)
-    }
-
-    static propTypes = {
-        value: PropTypes.string,
-        editable: PropTypes.bool,
-        status: PropTypes.string,
-        onChange: PropTypes.func
-    }
-}
-
-class EditSelect extends React.Component {
-    static propTypes = {
-        value: PropTypes.string,
-        editable: PropTypes.bool,
-        status: PropTypes.string,
-        onChange: PropTypes.func
-    }
-    state = {
-        value: this.props.value,
-        editable: this.props.editable || false
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.editable !== this.state.editable) {
-            this.setState({ editable: nextProps.editable })
-            if (nextProps.editable) {
-                this.cacheValue = this.state.value
-            }
-        }
-        if (nextProps.status && nextProps.status !== this.props.status) {
-            if (nextProps.status === 'save') {
-                this.props.onChange(this.state.value)
-            } else if (nextProps.status === 'cancel') {
-                this.setState({ value: this.cacheValue })
-                this.props.onChange(this.cacheValue)
-            }
-        }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.editable !== this.state.editable ||
-            nextState.value !== this.state.value
-    }
-
-    handleChange(e) {
-        const value = e.target.value
-        this.setState({ value })
-    }
-
-    render() {
-        const { value, editable } = this.state
-        return (<div>
-            {
-                editable ?
-                    <div>
-                        <Select showSearch style={{ width: 200 }} placeholder="Select a person" optionFilterProp="children"
-                          onChange={this.handleChange} >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
-                        </Select>
-                    </div> :
-                    <div className="editable-row-text">
-                        {value || ' '}
-                    </div>
-            }
-        </div>)
-    }
-}
 export default class Items extends React.Component {
     static propTypes = {
         params: PropTypes.object
@@ -152,7 +39,7 @@ export default class Items extends React.Component {
                     {
                         editable ?
                             <span>
-                                <a onClick={() => this.editDone(index, 'save')}>Save</a>
+                                <a onClick={() => this.editDone(index, 'save')}>Save</a>&nbsp;&nbsp;
                                 <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
                                     <a>Cancel</a>
                                 </Popconfirm>
@@ -187,7 +74,7 @@ export default class Items extends React.Component {
         if (typeof editable === 'undefined') {
             return text
         }
-        return (<EditableCell editable={editable} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />)
+        return (<TableEditInput editable={editable} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />)
     }
 
     renderColumnsSelect(data, index, key, text) {
@@ -195,7 +82,7 @@ export default class Items extends React.Component {
         if (typeof editable === 'undefined') {
             return text
         }
-        return (<EditSelect editable={editable} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />)
+        return (<TableEditSelectSearch editable={editable} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />)
     }
 
     handleChange(key, index, value) {
