@@ -5,12 +5,14 @@ import React, { PropTypes } from 'react'
 import { Select } from 'antd'
 const Option = Select.Option
 
-export default class TableEditSelectSearch extends React.Component {
+export default class TableEditSelect extends React.Component {
     static propTypes = {
         value: PropTypes.string,
         editable: PropTypes.bool,
         status: PropTypes.string,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+        showSearch: PropTypes.bool,
+        options: PropTypes.array
     }
     state = {
         value: this.props.value,
@@ -19,7 +21,7 @@ export default class TableEditSelectSearch extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.editable !== this.state.editable) {
-            this.setState({editable: nextProps.editable})
+            this.setState({ editable: nextProps.editable })
             if (nextProps.editable) {
                 this.cacheValue = this.state.value
             }
@@ -46,16 +48,19 @@ export default class TableEditSelectSearch extends React.Component {
 
     render() {
         const { value, editable } = this.state
+        const { showSearch, options } = this.props
         return (<div>
             {
                 editable ?
                     <div>
-                        <Select showSearch style={{ width: 200 }} placeholder="Select a person"
+                        <Select showSearch={showSearch} style={{ width: 200 }} placeholder="Select a person"
                           optionFilterProp="children"
                           onChange={this.handleChange}>
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
+                            {
+                                options.map((item, i) => {
+                                    return <Option key={'select-option-' + i} value={item.value}>{item.text}</Option>
+                                })
+                            }
                         </Select>
                     </div> :
                     <div className="editable-row-text">
