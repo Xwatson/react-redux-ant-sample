@@ -3,10 +3,12 @@
  */
 import React, { PropTypes } from 'react'
 import { Table, Popconfirm, DatePicker, Calendar } from 'antd'
-import TableEditInput from '../../../containers/TableEditInput'
-import TableEditSelectSearch from '../../../containers/TableEditSelectSearch'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
+import TableEditInput from '../../../containers/TableEditInput'
+import TableEditSelect from '../../../containers/TableEditSelect'
+import TableEditInputSearch from '../../../containers/TableEditInputSearch'
+
 
 export default class Items extends React.Component {
     static propTypes = {
@@ -29,7 +31,7 @@ export default class Items extends React.Component {
             title: 'address',
             dataIndex: 'address',
             width: '40%',
-            render: (text, record, index) => this.renderColumns(this.state.data, index, 'address', text)
+            render: (text, record, index) => this.renderColumnsInputSearch(this.state.data, index, 'address', text)
         }, {
             title: 'operation',
             dataIndex: 'operation',
@@ -52,6 +54,7 @@ export default class Items extends React.Component {
             }
         }]
         this.state = {
+            inputSearch:[],
             data: [{
                 key: '0',
                 name: {
@@ -63,6 +66,7 @@ export default class Items extends React.Component {
                     value: '32'
                 },
                 address: {
+                    editable: false,
                     value: 'London, Park Lane no. 0'
                 }
             }]
@@ -82,9 +86,44 @@ export default class Items extends React.Component {
         if (typeof editable === 'undefined') {
             return text
         }
-        return (<TableEditSelectSearch editable={editable} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />)
-    }
+        const options = [
+            {
+                id: 1,
+                value: 'jack',
+                text: 'Jack'
+            }, {
+                id: 1,
+                value: 'lucy',
+                text: 'Lucy'
+            }, {
+                id: 1,
+                value: 'tom',
+                text: 'Tom'
+            }
+        ]
 
+        return (<TableEditSelect editable={editable} options={options} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />)
+    }
+    renderColumnsInputSearch(data, index, key, text) {
+        const { editable, status } = data[index][key]
+        if (typeof editable === 'undefined') {
+            return text
+        }
+        return (
+            <TableEditInputSearch style={{ width:'200px' }} editable={editable} optionData={this.state.inputSearch}
+              onSearch={value => this.handleSearch(key, index, value)} value={text} onChange={value => this.handleChange(key, index, value)} status={status} />
+        )
+    }
+    handleSearch(key, index, value) {
+        if (value === '') return false
+        let _search = this.state.inputSearch
+        let _this = this
+        // 模拟数据请求
+        setTimeout(() => {
+            _search.push({ value:'1122' + value, text: '1122' + value })
+            _this.setState({ ...this.state, inputSearch: _search })
+        }, 1000)
+    }
     handleChange(key, index, value) {
         const { data } = this.state
         data[index][key].value = value
