@@ -51,11 +51,13 @@ npm run build
 ├── build                    # webpack配置
 ├── config                   # 项目配置
 ├── dist                     # build目录
+├── locales                  # 国际化配置文件
 ├── public                   # 静态资源
 ├── src                      # 程序源文件
 │   ├── components           # 全局可复用组件
 │   ├── containers           # 全局可复用组件容器
 │   ├── layouts              # 主页布局
+│   ├── localesEntry         # 国际化配置入口
 │   ├── routes               # 主路由
 │   │   ├── index.js         # 用store启动主程序路由
 │   │   └── Items            # 分支
