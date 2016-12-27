@@ -3,12 +3,12 @@
  */
 import React, { PropTypes } from 'react'
 import { Table, Popconfirm, DatePicker, Calendar } from 'antd'
+import { FormattedMessage } from 'react-intl'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
 import TableEditInput from '../../../containers/TableEditInput'
 import TableEditSelect from '../../../containers/TableEditSelect'
 import TableEditInputSearch from '../../../containers/TableEditInputSearch'
-
 
 export default class Items extends React.Component {
     static propTypes = {
@@ -171,6 +171,7 @@ export default class Items extends React.Component {
         const columns = this.columns
         return (
             <div>
+                <h4><FormattedMessage id="Items.Title" defaultMessage="列表页" /></h4>
                 <Table bordered dataSource={dataSource} columns={columns} />
                 <DatePicker />
                 <div style={{ width: 319, border: '1px solid #d9d9d9', borderRadius: 4 }}>
