@@ -5,7 +5,7 @@
 ### 特性
 * react+redux
 * route嵌入异步模块加载器
-* 动态注册Reducer
+* 动态注入Reducer
 * react热更新
 * eslint代码检测
 * 国际化
