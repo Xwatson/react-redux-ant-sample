@@ -1,4 +1,12 @@
 {
+  "Login.Input.UserName.Placeholder": "用户名",
+  "Login.Input.Password.Placeholder": "密码",
+  "Login.Input.Required.UserName": "请输入用户名!",
+  "Login.Input.Required.Password": "请输入密码!",
+  "Login.Btn.Login": "登录",
+  "Login.Link.RememberMe": "记住我",
+  "Login.Link.ForgotPwd": "忘记密码?",
+  "Login.Link.Register": "现在注册",
   "Home.Welcome": "欢迎！",
   "Items.Title": "列表页",
   "InjectExample.alert": "我是提醒",

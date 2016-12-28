@@ -1,4 +1,12 @@
 {
+  "Login.Input.UserName.Placeholder": "username",
+  "Login.Input.Password.Placeholder": "password",
+  "Login.Input.Required.UserName": "Please input your username!",
+  "Login.Input.Required.Password": "Please input your Password!",
+  "Login.Btn.Login": "Log in",
+  "Login.Link.RememberMe": "Remember me",
+  "Login.Link.ForgotPwd": "Forgot password?",
+  "Login.Link.Register": "register now!",
   "Home.Welcome": "Welcome",
   "Items.Title": "ListPage",
   "InjectExample.alert": "i am alert",
