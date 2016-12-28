@@ -8,7 +8,7 @@ const config = require('../../config/config.json')
 
 class AppContainer extends Component {
     static propTypes = {
-        routes : PropTypes.object.isRequired,
+        routes : PropTypes.any,
         store  : PropTypes.object.isRequired
     }
 
