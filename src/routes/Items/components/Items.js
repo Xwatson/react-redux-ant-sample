@@ -16,7 +16,7 @@ export default class Items extends React.Component {
     }
     constructor(props) {
         super(props)
-        const { params: { id } } = props
+        // const { params: { id } } = props
         this.columns = [{
             title: 'name',
             dataIndex: 'name',
