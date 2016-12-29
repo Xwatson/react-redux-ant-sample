@@ -54,6 +54,7 @@ npm run build
 ├── locales                  # 国际化配置文件
 ├── public                   # 静态资源
 ├── src                      # 程序源文件
+│   ├── assets               # 内部静态资源
 │   ├── components           # 全局可复用组件
 │   ├── containers           # 全局可复用组件容器
 │   ├── layouts              # 主页布局
