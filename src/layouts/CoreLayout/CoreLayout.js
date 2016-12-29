@@ -2,16 +2,14 @@
  * Created by xwatson on 2016/12/8.
  */
 import React from 'react'
-import { LocaleProvider, Radio, Icon } from 'antd'
-import { addLocaleData, IntlProvider } from 'react-intl'
+import { LocaleProvider, Icon } from 'antd'
+import { IntlProvider } from 'react-intl'
 import LeftMenu from '../../components/LeftMenu'
 import Breadcrumb from '../../components/Breadcrumb'
 import BaseLayout from '../Base/BaseLayout'
 import './CoreLayout.scss'
 import '../../styles/main.scss'
-import enUS from '../../localesEntry/en-US'
-import zhCN from '../../localesEntry/zh-CN'
-addLocaleData(enUS.data)
+import LangSwitch from '../../components/LangSwitch'
 
 const lMeuns = {
     theme: 'dark', // 主题
@@ -36,13 +34,6 @@ const lMeuns = {
 }
 
 export class CoreLayout extends BaseLayout {
-    constructor(props) {
-        super(props)
-        this.changeLocale = this.changeLocale.bind(this)
-    }
-    state = {
-        locale: enUS
-    }
 
     render() {
         return (
@@ -55,10 +46,7 @@ export class CoreLayout extends BaseLayout {
                         </aside>
                         <div className="ant-layout-main">
                             <div className="ant-layout-header">
-                                <Radio.Group style={{ float: 'right' }} defaultValue={enUS} onChange={this.changeLocale}>
-                                    <Radio.Button key="en" value={enUS}>English</Radio.Button>
-                                    <Radio.Button key="cn" value={zhCN}>中文</Radio.Button>
-                                </Radio.Group>
+                                <LangSwitch changeLocale={this.changeLocale} />
                             </div>
                             <div className="ant-layout-breadcrumb">
                                 <Breadcrumb menus={lMeuns} />

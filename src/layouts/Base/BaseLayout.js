@@ -8,8 +8,16 @@ import enUS from '../../localesEntry/en-US'
 import zhCN from '../../localesEntry/zh-CN'
 import moment from 'moment'
 moment.locale('en')
+addLocaleData(zhCN.data)
 
 export default class BaseLayout extends React.Component {
+    constructor(props) {
+        super(props)
+        this.changeLocale = this.changeLocale.bind(this)
+        this.state = {
+            locale: zhCN
+        }
+    }
     changeLocale(e) {
         const localeValue = e.target.value
         this.setState({ locale: localeValue })
