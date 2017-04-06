@@ -42,7 +42,7 @@ npm run build
 * react中使用```props```必须声明其propTypes
 * string必须用单引号
 * 其他默认
-
+> 注意：如下载本项目运行eslint检测不通过，请修改package中eslint项为固定版本进行install
 ### 结构
 
 ```
