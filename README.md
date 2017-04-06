@@ -1,6 +1,6 @@
 #react-ant-sample
 
-### 参考react-redux-starter-kit框架，使用ant UI完成的基本功能架构
+### 参考react-redux-starter-kit框架，使用ant design完成的基本功能架构
 
 ### 特性
 * react+redux
