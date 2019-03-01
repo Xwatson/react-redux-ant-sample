@@ -1,6 +1,4 @@
-#react-ant-sample
-
-### 参考react-redux-starter-kit框架，使用ant design完成的基本功能架构
+#react-redux-antd-sample-kit
 
 ### 特性
 * react+redux
@@ -31,18 +29,7 @@ npm run build
 ```
 
 ### eslint规则
-* 代码缩进为4格
-* jsx缩进为4格
-* jsx中属性使用双引号
-* 函数声明请在‘()’后空格，如：function() {}
-* 花括号'{}'内前后需要空格，如：{ test1, test2 }
-* 三元表达式可换行但 ’ ? ‘和‘ : ’ 不可独自占行，正确格式如：true ? <br />
-　　　　　　　　　　　　　　　　　　　　　　　　　　　  111 : <br />
-　　　　　　　　　　　　　　　　　　　　　　　　　　　  222
-* react中使用```props```必须声明其propTypes
-* string必须用单引号
-* 其他默认
-> 注意：如下载本项目运行eslint检测不通过，请修改package中eslint项为固定版本进行install
+继承自airbnb规范
 ### 结构
 
 ```

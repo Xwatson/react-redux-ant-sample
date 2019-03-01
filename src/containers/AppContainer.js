@@ -1,36 +1,31 @@
 /**
  * Created by xwatson on 2016/12/9.
  */
-import React, { Component, PropTypes } from 'react'
-import { browserHistory, Router } from 'react-router'
+import '../styles/main.less'
+import React from 'react'
 import { Provider } from 'react-redux'
-const config = require('../../config/config.json')
+import { Router, Route, Switch } from 'react-router-dom'
+import { LocaleProvider } from 'antd'
+import zhCN from 'antd/lib/locale-provider/zh_CN'
 
-class AppContainer extends Component {
-    static propTypes = {
-        routes : PropTypes.any,
-        store  : PropTypes.object.isRequired
-    }
+import history from '../history'
+import createStore from '../store/createStore'
+import BasicLayout from '../layouts/BasicLayout'
+import UserLayout from '../layouts/UserLayout'
 
-    static host = {
-        BASE_API_URL:config[process.env.NODE_ENV.toUpperCase()].apiHost
-    }
+const initialState = window.__INITIAL__STATE__ || {} // eslint-disable-line
+const store = createStore(initialState)
 
-    shouldComponentUpdate() {
-        return false
-    }
-
-    render() {
-        const { routes, store } = this.props
-
-        return (
-            <Provider store={store}>
-                <div style={{ height: '100%' }}>
-                    <Router history={browserHistory} children={routes} />
-                </div>
-            </Provider>
-        )
-    }
-}
-
-export default AppContainer
+export default () => (
+  <LocaleProvider locale={zhCN}>
+    <Provider store={store}>
+      <Router history={history}>
+        <Switch>
+          <Route path="/user" component={UserLayout} />
+          <Route path="/" component={BasicLayout} />
+          <Route path="*" component={() => <h1>404</h1>} />
+        </Switch>
+      </Router>
+    </Provider>
+  </LocaleProvider>
+)
