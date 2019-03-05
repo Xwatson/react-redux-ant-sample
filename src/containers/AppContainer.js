@@ -1,7 +1,7 @@
 /**
  * Created by xwatson on 2016/12/9.
  */
-import '../styles/main.less'
+import '../styles/base.less'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Router, Route, Switch } from 'react-router-dom'
@@ -14,7 +14,7 @@ import BasicLayout from '../layouts/BasicLayout'
 import UserLayout from '../layouts/UserLayout'
 
 const initialState = window.__INITIAL__STATE__ || {} // eslint-disable-line
-const store = createStore(initialState)
+export const store = createStore(initialState)
 
 export default () => (
   <LocaleProvider locale={zhCN}>

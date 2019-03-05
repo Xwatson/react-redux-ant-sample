@@ -1,5 +1,17 @@
+import '../styles/layout.less'
 import React from 'react'
-import { Layout, Menu, Icon } from 'antd'
+import { Route, Switch } from 'react-router-dom'
+import {
+  Layout,
+  Menu,
+  Icon,
+  Avatar,
+} from 'antd'
+import AuthorizedRoute from '../components/AuthorizedRoute'
+import router from '../common/router'
+import NoPermission from '../pages/403'
+import NoPageFound from '../pages/404'
+import ServiceError from '../pages/500'
 
 const { Header, Sider, Content } = Layout
 
@@ -14,14 +26,14 @@ export default class BasicLayout extends React.PureComponent {
   toggle = () => {
     const { collapsed } = this.state
     this.setState({
-      collapsed,
+      collapsed: !collapsed,
     })
   }
 
   render() {
     const { collapsed } = this.state
     return (
-      <Layout>
+      <Layout className="basic-layout">
         <Sider
           trigger={null}
           collapsible
@@ -44,18 +56,40 @@ export default class BasicLayout extends React.PureComponent {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
+          <Header className="layout-header">
             <Icon
               className="trigger"
               type={collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
+            <div className="menu-right">
+              <p>
+                <Avatar style={{ backgroundColor: '#7265e6', verticalAlign: 'middle' }} size="small">
+                  X
+                </Avatar>
+              </p>
+              <p>
+                <Icon className="lang" type="global" />
+              </p>
+            </div>
           </Header>
-          <Content style={{
-            margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
-          }}
-          >
-            Content
+          <Content className="layout-content">
+            <Switch>
+              {
+                router['/'].map(route => (
+                  <AuthorizedRoute
+                    key={route.path}
+                    authority="admin"
+                    path={route.path}
+                    redirectPath={route.component ? '/403' : route.redirect}
+                    component={route.component}
+                  />
+                ))
+              }
+              <Route exact path="/403" component={NoPermission} />
+              <Route exact path="/404" component={NoPageFound} />
+              <Route exact path="/500" component={ServiceError} />
+            </Switch>
           </Content>
         </Layout>
       </Layout>

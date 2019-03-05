@@ -1,0 +1,48 @@
+.basic-layout, .user-layout{
+  height: 100%;
+}
+.basic-layout{
+  .logo{
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
+  }
+  .layout-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: #fff;
+    .trigger {
+      font-size: 18px;
+      line-height: 64px;
+      cursor: pointer;
+      transition: color .3s;
+      :hover{
+        color: #1890ff;
+      }
+    }
+    .menu-right{
+      display: flex;
+      flex-direction: row;
+      width: 100px;
+      >p {
+        flex: 1;
+      }
+      .lang{
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+  }
+  .layout-content{
+    margin: 24px 16px;
+    padding: 24px;
+    background: #fff;
+    min-height: 280px;
+  }
+}
+.user-layout{
+  background: url('../assets/images/user-layout-bg.jpg') no-repeat;
+  background-size: cover;
+}

@@ -50,29 +50,28 @@ module.exports = {
           fallback: 'style-loader',
           use: ['css-loader', 'less-loader']
         }),
-        /* loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'less-loader',
-              options: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                url: false,
-                minimize: true,
-                sourceMap: true
-              }
-            },
-          ],
-        }) */
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        exclude: /node_modules/,
+        include: [resolve('../src/assets/images')],
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: 'img/[name].[hash:4].[ext]'
+        }
+      },
+      {
+        test: /\.(woff|eot|ttf|svg|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: 'font/[name].[hash:4].[ext]'
+        }
+      },
     ],
   },
-  plugins:[
-    new ExtractTextPlugin('style.css')
+  plugins: [
+    new ExtractTextPlugin('style.[hash:4].css')
   ]
 }

@@ -1,12 +1,16 @@
+import '../styles/layout.less'
 import React from 'react'
 
 export default class UserLayout extends React.PureComponent {
   componentDidMount() {
-    // do ..
 
   }
 
   render() {
-    return <h1>uu</h1>
+    return (
+      <div className="user-layout">
+        User
+      </div>
+    )
   }
 }

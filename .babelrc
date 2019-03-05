@@ -6,6 +6,7 @@
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "react-hot-loader/babel",
-    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
+    "syntax-dynamic-import"
   ]
 }

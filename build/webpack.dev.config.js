@@ -49,12 +49,13 @@ if (isDev) {
     port: webConfig[env].port,
     contentBase: path.join(__dirname, '../dist'),
     hot: true,
+    inline:true,
     overlay: {
       errors: true
     },
-    publicPath: '/public/',
+    publicPath: '/public',
     historyApiFallback: {
-      index: '/public/index.html'
+      index: '/public'
     },
     proxy: {
       '/api': webConfig[env].apiHost
