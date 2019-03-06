@@ -25,9 +25,7 @@ const AuthorizedRoute = (props) => {
       )}
     >
       {
-        Component
-          ? <Route key={key} path={path} component={Component} />
-          : <Redirect to={{ pathname: redirectPath }} />
+        <Route key={key} path={path} component={Component} />
       }
     </Authorized>
   )

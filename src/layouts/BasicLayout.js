@@ -1,6 +1,6 @@
 import '../styles/layout.less'
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import {
   Layout,
   Menu,
@@ -76,15 +76,20 @@ export default class BasicLayout extends React.PureComponent {
           <Content className="layout-content">
             <Switch>
               {
-                router['/'].map(route => (
-                  <AuthorizedRoute
-                    key={route.path}
-                    authority="admin"
-                    path={route.path}
-                    redirectPath={route.component ? '/403' : route.redirect}
-                    component={route.component}
-                  />
-                ))
+                router['/'].map((route) => {
+                  if (route.component) {
+                    return (
+                      <AuthorizedRoute
+                        key={route.path}
+                        authority="admin"
+                        path={route.path}
+                        redirectPath="/403"
+                        component={route.component}
+                      />
+                    )
+                  }
+                  return <Redirect exact from="/" to={route.redirect} />
+                })
               }
               <Route exact path="/403" component={NoPermission} />
               <Route exact path="/404" component={NoPageFound} />

@@ -36,12 +36,12 @@ export default {
   '/user': [
     { path: '/user', redirect: '/user/login' },
     {
-      path: '/login', component: dynamicWrapper([], import('../pages/Login')),
+      path: '/login', component: dynamicWrapper([], () => import('../pages/Login')),
     },
   ],
   '/': [
     { path: '/', redirect: '/home' },
-    { path: '/home', component: dynamicWrapper([], import('../pages/Home')) },
-    { path: '/list', component: dynamicWrapper([], import('../pages/List')) },
+    { path: '/home', component: dynamicWrapper([], () => import('../pages/Home')) },
+    { path: '/list', component: dynamicWrapper([], () => import('../pages/List')) },
   ],
 }
