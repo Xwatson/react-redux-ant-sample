@@ -7,6 +7,7 @@
     "clean": "rimraf dist",
     "lint": "eslint bin build config src test",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js",
+    "prod": "cross-env NODE_ENV=production --config build/webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
