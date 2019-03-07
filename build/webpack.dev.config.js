@@ -1,8 +1,10 @@
+/* eslint-disable */
 const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
 const HTMLPlugin = require('html-webpack-plugin')
+const AutoDllPlugin = require('autodll-webpack-plugin')
 const webConfig = require('../config/config.json')
 
 const env = process.env.NODE_ENV
@@ -10,9 +12,6 @@ const env = process.env.NODE_ENV
 const isDev = env !== 'production' && env !== 'test'
 
 const config = webpackMerge(baseConfig, {
-  entry: {
-    app: path.join(__dirname, '../src/index.js'),
-  },
   output: {
     filename: '[name].[hash].js',
   },
@@ -32,8 +31,29 @@ const config = webpackMerge(baseConfig, {
         collapseWhitespace: true
       },
       template: path.join(__dirname, '../src/templates/index.html')
+    }),
+    new AutoDllPlugin({
+      inject: true, // will inject the DLL bundle to index.html
+      debug: true,
+      filename: '[name].1.0.js',
+      path: './dll',
+      entry: {
+        dll: [
+          'react',
+          'react-dom',
+          'react-router',
+          'react-router-dom',
+          'redux',
+          'react-redux',
+          'redux-thunk',
+          'qs',
+          'axios',
+          'react-loadable',
+        ]
+      },
     })
-  ]
+  ],
+  devtool: 'source-map',
 })
 
 if (isDev) {
@@ -49,7 +69,7 @@ if (isDev) {
     port: webConfig[env].port,
     contentBase: path.join(__dirname, '../dist'),
     hot: true,
-    inline:true,
+    inline: true,
     overlay: {
       errors: true
     },
@@ -65,3 +85,4 @@ if (isDev) {
 }
 
 module.exports = config
+/* eslint-enable */

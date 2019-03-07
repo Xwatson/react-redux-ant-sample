@@ -6,3 +6,7 @@
 dist
 src/utils
 node_modules
+
+dll
+.dll
+.cache
