@@ -1,13 +1,6 @@
-#react-redux-antd-sample-kit
+# react-redux-antd-sample-kit
 
-### 特性
-* react+redux
-* route嵌入异步模块加载器
-* 动态注入Reducer
-* react热更新
-* eslint代码检测
-* 国际化
-* ...
+一个基于react+redux+antd基础框架
 
 ### 运行
 *install 安装依赖*
@@ -21,20 +14,15 @@ npm run dev
 ```
 *运行编译*
 ```bash
-npm run compile
-```
-*运行build*
-```bash
-npm run build
+npm run prod
 ```
 
 ### eslint规则
-继承自airbnb规范
-### 结构
+> 继承自 [Airbnb](https://github.com/airbnb/javascript) 规范
+### 目录结构
 
 ```
 .
-├── bin                      # 启动脚本
 ├── build                    # webpack配置
 ├── config                   # 项目配置
 ├── dist                     # build目录
@@ -42,21 +30,20 @@ npm run build
 ├── public                   # 静态资源
 ├── src                      # 程序源文件
 │   ├── assets               # 内部静态资源
+│   ├── common               # 存放router和menu配置等
 │   ├── components           # 全局可复用组件
 │   ├── containers           # 全局可复用组件容器
-│   ├── layouts              # 主页布局
-│   ├── localesEntry         # 国际化配置入口
-│   ├── routes               # 主路由
-│   │   ├── index.js         # 用store启动主程序路由
-│   │   └── Items            # 分支
-│   │       ├── index.js     # 路由定义和代码异步分割
-│   │       ├── components   # 组件
-│   │       ├── container    # 链接action和store
-│   │       └── modules      # reducers/constants/actions的集合
+│   ├── layouts              # 布局
+│   ├── models               # models
+│   ├── pages                # 页面
+│   │   └── Home             # 页面文件夹
+│   │       ├── components   # 页面组件
+│   │       └── index.js     # 页面入口文件
 │   ├── store                # Redux指定块
 │   │   ├── createStore.js   # 创建和使用redux store
 │   │   └── reducers.js      # Reducer注册和注入
-│   ├── styles               # 样式
-│   ├── main.js              # 程序启动入口
-└── tests                    # 单元测试
+│   ├── styles               # 主样式
+│   ├── templates            # 模板
+│   ├── idnex.js             # 程序启动入口
+└── tests                    # 测试
 ```
