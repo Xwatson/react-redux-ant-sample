@@ -1,5 +1,10 @@
+const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const HappyPack = require('happypack')
+const os = require('os')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 function resolve(relatedPath) {
   return path.join(__dirname, relatedPath)
@@ -8,7 +13,8 @@ function resolve(relatedPath) {
 module.exports = {
   output: {
     path: resolve('../dist'),
-    publicPath: '/public/'
+    publicPath: '/public/',
+    chunkFilename: 'chunks/[name].[hash:4].js',
   },
   resolve: {
     extensions: ['.js']
@@ -31,13 +37,13 @@ module.exports = {
       },
       {
         test: /.js$/,
-        loader: 'babel-loader',
+        loader: 'happypack/loader?id=happyBabel',
         exclude: /node_modules/
       },
       {
         test: /.jsx$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'happypack/loader?id=happyBabel'
       },
       {
         test: /\.(css|less)$/,
@@ -46,10 +52,11 @@ module.exports = {
           resolve('../src/components'),
           resolve('../node_modules/antd'),
         ],
-        use: ExtractTextPlugin.extract({
+        loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'happypack/loader?id=happyStyle'}),
+        /* use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'less-loader']
-        }),
+        }), */
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -72,6 +79,28 @@ module.exports = {
     ],
   },
   plugins: [
-    new ExtractTextPlugin('style.[hash:4].css')
+    new ExtractTextPlugin('style.[hash:4].css'),
+    new HappyPack({
+      //用id来标识 happypack处理那里类文件
+      id: 'happyBabel',
+      //如何处理  用法和loader 的配置一样
+      loaders: [{
+        loader: 'babel-loader?cacheDirectory=true',
+      }],
+      //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      threadPool: happyThreadPool,
+      //允许 HappyPack 输出日志
+      verbose: true,
+    }),
+    new HappyPack({
+      id: 'happyStyle',
+      loaders: [ 'css-loader?sourceMap=true', 'less-loader?sourceMap=true' ],
+      threadPool: happyThreadPool,
+      verbose: true,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: 'async-common',
+      minChunks: 3,
+    }),
   ]
 }
