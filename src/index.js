@@ -4,9 +4,10 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader' // eslint-disable-line
+import { AppContainer, setConfig } from 'react-hot-loader' // eslint-disable-line
 import App from './containers/AppContainer'
 
+setConfig({ pureSFC: true })
 const MOUNT_NODE = document.getElementById('root')
 
 const render = (Component) => {

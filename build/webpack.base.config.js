@@ -85,7 +85,7 @@ module.exports = {
   plugins: [
     // 去除moment的语言包
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /de|fr|hu/),
-    new ExtractTextPlugin('style.[hash:4].css'),
+    new ExtractTextPlugin('style.[contenthash:8].css'),
     new HappyPack({
       // 用id来标识 happypack处理那里类文件
       id: 'happyBabel',

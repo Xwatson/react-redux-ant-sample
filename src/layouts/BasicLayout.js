@@ -88,7 +88,7 @@ export default class BasicLayout extends React.PureComponent {
                       />
                     )
                   }
-                  return <Redirect exact from="/" to={route.redirect} />
+                  return <Redirect key={route.path} exact from="/" to={route.redirect} />
                 })
               }
               <Route exact path="/403" component={NoPermission} />

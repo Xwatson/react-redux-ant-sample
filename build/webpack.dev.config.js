@@ -23,7 +23,6 @@ const config = webpackMerge(baseConfig, {
       '__TEST__': env === 'test',
     }),
     new HTMLPlugin({
-      hash: false,
       favicon: path.join(__dirname, '../public/favicon.ico'),
       filename: 'index.html',
       inject: 'body',
@@ -62,6 +61,9 @@ if (isDev) {
       'react-hot-loader/patch',
       path.join(__dirname, '../src/index.js')
     ]
+  }
+  config.resolve.alias = {
+    'react-dom': '@hot-loader/react-dom'
   }
   config.devServer = {
     host: webConfig[env].host,
