@@ -1,0 +1,25 @@
+{
+    "status": 1,
+    "data": 
+      [
+        {
+            name: "header-token",
+            requestParamType: "HeaderParam",
+            code: "token",
+            paramType: "string",
+            array: false,
+            required: 0,
+        },
+        {
+            name: "query-id",
+            requestParamType: "BodyParam",
+            code: "id",
+            value: 123456789012345678901234,
+            paramType: "number",
+            array: false,
+            required: 0,
+            maxLength: 30,
+        },
+
+    ]
+}
